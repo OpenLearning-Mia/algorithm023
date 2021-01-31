@@ -38,7 +38,7 @@
 *		 1.mid = (right + left)/2、mid*mid>x，如果right、left、mid值非常大（eg: 2^31-1），最后都可能导致计算结果溢出（right + left、mid*mid）
 *		 2.所以安全的写法是：mid = left + (right - left)/2 和 (mid > x/mid && num%mid==0)；
 *		   或者使用【位运算】：mid = left + ((right - left) >> 1)；因为cpu处理位运算更快。
-**		update:再或者把结果变量定义成long型，因为计算的元素是int型，所以计算结果(long型)就不会产生溢出，就可以用mid*mid>x这种计算方式；
+**		update:再或者把结果变量定义成long型，因为计算的元素是int型(4 byte,long型：32bit:4byte;64bit:8byte)，所以计算结果(long long型:8 byte)就不会产生溢出，就可以用mid*mid>x这种计算方式；
 *
 * 4.复杂度分析:
 *
@@ -61,7 +61,7 @@ func isPerfectSquare(num int) bool {
 	left, right := 2, num/2
 
 	// 4.开始二分查找模式：小了，往右找；大了，往左找；最后要么找到了、要么没找到，return and func end;
-	//   查找结束条件：left > right, (越界了)
+	//   查找结束条件：left > right, (越界了，结束)
 	for left <= right {
 		mid := left + (right-left)/2
 		if mid == num/mid && num%mid == 0 { //1.找到了
