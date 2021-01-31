@@ -35,7 +35,7 @@ class Solution {
 			// 0.特判：字符串长度为0
 			if (len == 0) return s;
 
-			// 1.统计空格数量，并扩容数组s的长度
+			// 1.统计空格数量，为了扩容数组s的长度
 			for (char c : s) {
 				if (c == ' ') count++;
 			}
